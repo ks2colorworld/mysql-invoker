@@ -2,30 +2,30 @@
 drop database if exists `invoker`;
 create database if not exists `invoker`;
 
--- Grant the necessary permissions for the provisioner
-GRANT
-  CREATE,
-  ALTER,
-  DROP,
-  CREATE ROUTINE,
-  ALTER ROUTINE,
-  CREATE VIEW,
-  ALTER,
-  SELECT,
-  INSERT,
-  UPDATE,
-  DELETE,
-  SHOW VIEW,
-  TRIGGER,
-  REFERENCES,
-  EXECUTE
-  ON `invoker`.* TO `provisioner`;
+-- -- Grant the necessary permissions for the provisioner
+-- GRANT
+--   CREATE,
+--   ALTER,
+--   DROP,
+--   CREATE ROUTINE,
+--   ALTER ROUTINE,
+--   CREATE VIEW,
+--   ALTER,
+--   SELECT,
+--   INSERT,
+--   UPDATE,
+--   DELETE,
+--   SHOW VIEW,
+--   TRIGGER,
+--   REFERENCES,
+--   EXECUTE
+--   ON `invoker`.* TO `provisioner`;
 
--- Grant the necessary permissions for the application.
-GRANT
-  EXECUTE,
-  SELECT
-  ON `invoker`.* TO `application`;
+-- -- Grant the necessary permissions for the application.
+-- GRANT
+--   EXECUTE,
+--   SELECT
+--   ON `invoker`.* TO `application`;
 
 # Create user table
 drop table if exists `invoker`.`user`;
@@ -41,7 +41,8 @@ delimiter $$
 
 drop procedure if exists `invoker`.`createUser`;
 create
-  definer = 'provisioner' procedure `invoker`.`createUser`
+  -- definer = 'provisioner' 
+  procedure `invoker`.`createUser`
 (
   in `$name` varchar(255)
 )
@@ -61,7 +62,8 @@ delimiter $$
 
 drop procedure if exists `invoker`.`listUser`;
 create
-  definer = 'provisioner' procedure `invoker`.`listUser`
+  -- definer = 'provisioner' 
+  procedure `invoker`.`listUser`
 (
   in `$limit`  smallint unsigned,
   in `$offset` int unsigned
@@ -80,7 +82,8 @@ delimiter $$
 
 drop procedure if exists `invoker`.`readUser`;
 create
-  definer = 'provisioner' procedure `invoker`.`readUser`
+  -- definer = 'provisioner' 
+  procedure `invoker`.`readUser`
 (
   in `$id` bigint unsigned
 )
@@ -98,7 +101,8 @@ delimiter $$
 
 drop procedure if exists `invoker`.`updateUser`;
 create
-  definer = 'provisioner' procedure `invoker`.`updateUser`
+  -- definer = 'provisioner' 
+  procedure `invoker`.`updateUser`
 (
   in `$id`   bigint unsigned,
   in `$name` varchar(255)
